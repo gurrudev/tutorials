@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <button id="fullscreenButton">Go Fullscreen</button>
+
+    <script>
+        const fullscreenButton = document.getElementById('fullscreenButton');
+
+        // Function to request fullscreen
+        function requestFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            }
+        }
+
+        // Function to exit fullscreen
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+        // Toggle fullscreen mode when the button is clicked
+        fullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+                exitFullscreen();
+            } else {
+                requestFullscreen(document.documentElement);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
